@@ -1,41 +1,25 @@
-# Module 1 Group Assignment
-
-CSCI 5117, Spring 2022, [assignment description](https://canvas.umn.edu/courses/291031/pages/project-1)
-
 ## App Info:
 
-* Team Name: TODO
 * App Name: Undyne – Eternal
-* App Link: <https://whispering-waters-75938.herokuapp.com/>
 
-### Students
+## How to Run the Project
 
-* Nikunj Chawla, chawl025@umn.edu
-* Aaron Kandikatla, kandi021@umn.edu
-* Siyad Gedi, gedi0007@umn.edu
-* Sumukh Nitundila, nitun001@umn.edu
-* Sumanth Kaushik Vishwanath, kaush047@umn.edu
+1. Add URL for PostgreSQL configurations in a .env file in the root directory of the project.
+(DOMAIN, CLIENT_ID, CLIENT_SECRET, DATABASE_URL)
+2. Add URL for Firebase configurations in a .env file in the root directory of the project (for firebase storage used to store PFP) 
+(type, project_id, private_key_id, private_key, client_email, client_id, auth_uri, token_uri, auth_provider_x509_cert_url, client_x509_cert_url).
+3. Add a random secret key in .env file in the root directory of the project (SECRET_KEY).
+4. Run pipenv install to install all dependencies.
+5. Run flask run to run the project.
 
 ## Key Features
-
-**Describe the most challenging features you implemented
-(one sentence per bullet, maximum 4 bullets):**
 
 * Added searching, filtering, and sorting levels based on title, description, difficulty, rating, and time.
 * Redesigned the game from scratch to improve its structure, reduce bad practices, and incorporate it when our ideals.
 * Developed a level creator in which users can design their own levels with many custom options and a cool user interface.
 * Made it possible for user to pick their own unique username after logging in and integrating it with Auth0, accounting for users who try to use the same email with different login options.
 
-## Testing Notes
-
-**Is there anything special we need to know in order to effectively test your app? (optional):**
-
-* ...
-
 ## Screenshots of Site
-
-**[Add a screenshot of each key page (around 4)](https://stackoverflow.com/questions/10189356/how-to-add-screenshot-to-readmes-in-github-repository)
-along with a very brief caption:**
 
 ![home](static/readme/home.png)
 
@@ -65,13 +49,10 @@ There are three main parts to the wireframe. The first is the social media part 
 
 ## External Dependencies
 
-**Document integrations with 3rd Party code or services here. Please do not document required libraries. or libraries that are mentioned in the product requirements**
-
 * PIXI.js
 * howler.js
 * pydantic
 * firebase_admin
 
-**If there's anything else you would like to disclose about how your project relied on external code, expertise, or anything else, please disclose that here:**
 
-The game was based off Fairdyne by Joe Zeng but we rewrote a large majority of it from scratch.
+The game was based off Fairdyne by Joe Zeng but rewrote a large majority of it from scratch.
