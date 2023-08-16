@@ -14,7 +14,7 @@
       <excludeFolder url="file://$MODULE_DIR$/venv" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
     </content>
-    <orderEntry type="jdk" jdkName="Pipenv (project-1-todo)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Pipenv (Undyne)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="pixi.js" level="application" />

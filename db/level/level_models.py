@@ -2,7 +2,7 @@ import json
 from typing import Literal
 
 from flask import session
-from pydantic import BaseModel, validator, Field, conint, confloat, constr
+from pydantic import BaseModel, Field, conint, confloat, constr, field_validator
 
 
 class LevelData(BaseModel):
@@ -15,13 +15,13 @@ class LevelData(BaseModel):
     user_id: str = ""
     level_published: bool = Field(alias = "levelPublished")
     
-    @validator("user_id")
+    @field_validator("user_id")
     def get_user_data_if_logged_in(cls, value):
         if "profile" in session:
             return session["profile"]["user_id"]
         return value
     
-    @validator("level_description")
+    @field_validator("level_description")
     def verify_level_description_is_a_valid_json(cls, value):
         try:
             json.loads(value)
@@ -32,7 +32,7 @@ class LevelData(BaseModel):
 
 
 class CommentBase(BaseModel):
-    comment_desc: constr(curtail_length = 200) = Field(alias = "commentBody")
+    comment_desc: constr(max_length = 200) = Field(alias = "commentBody")
     comment_rating: confloat(ge = 1.0, le = 5.0) = Field(alias = "commentRating")
 
 
@@ -41,7 +41,7 @@ class CommentData(CommentBase):
     user_id: str = Field("", alias = "userId")
     level_id: conint(gt = 0) = Field(alias = "levelId")
     
-    @validator("user_id")
+    @field_validator("user_id")
     def check_uid(cls, value):
         if "profile" in session:
             return session["profile"]["user_id"]

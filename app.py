@@ -27,9 +27,7 @@ object_factory._create_auth_object(app)
 app.register_blueprint(auth_router.auth_blueprint)
 firebase_object = Firebase()
 
-
-@app.before_first_request
-def init():
+with app.app_context():
     database_handler.setup()
 
 
@@ -40,11 +38,12 @@ def home_page():
 
 @app.route("/home-feed")
 def feed():
-    data = request.json
-    if data is None:
-        res = home_handler.get_homefeed()
-    else:
+    # data = request.get_json(force = True)
+    data = request.data
+    if request.data:
         res = home_handler.get_homefeed_with_filters(data)
+    else:
+        res = home_handler.get_homefeed()
     return render_template("home/home_template.html", res = res)
 
 
@@ -120,6 +119,7 @@ def level(level_id):
 
 
 @app.route("/replace-comment", methods = ["POST"])
+@utils.requires_auth
 def replace_comment():
     user_id = session.get("profile")
     if user_id is not None:
@@ -146,6 +146,7 @@ def replace_comment():
 
 
 @app.route("/delete-comment", methods = ["DELETE"])
+@utils.requires_auth
 def delete_comment():
     user_id = session.get("profile")
     if user_id is not None:
@@ -270,6 +271,7 @@ def add_level():
 
 
 @app.route("/update-user", methods = ['PATCH'])
+@utils.requires_auth
 def update_user():
     data = request.get_json()
     user_handler.update_user_avatar(data)
