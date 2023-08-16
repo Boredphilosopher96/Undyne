@@ -63,7 +63,7 @@ class Auth:
         user_data = auth_handler.check_if_user_in_db(user_data.user_id, user_email = user_data.user_email)
         if user_data:
             # Store the user information in flask session.
-            session['profile'] = user_data.dict()
+            session['profile'] = user_data.model_dump()
             return True
         else:
             # Storing user sent info temporarily
