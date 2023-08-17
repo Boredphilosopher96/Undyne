@@ -19,6 +19,10 @@
 * Developed a level creator in which users can design their own levels with many custom options and a cool user interface.
 * Made it possible for user to pick their own unique username after logging in and integrating it with Auth0, accounting for users who try to use the same email with different login options.
 
+## Structure
+![structure](static/readme/structure.png)
+
+
 ## Screenshots of Site
 
 ![home](static/readme/home.png)
