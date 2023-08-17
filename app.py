@@ -124,25 +124,44 @@ def replace_comment():
     user_id = session.get("profile")
     if user_id is not None:
         user_id = user_id.get("user_id")
-    
+
     level_id = request.form.get("level")
     level_info = level_handler.get_level_info(level_id)[0]
     
     level_is_public = level_info[6]
     level_user = level_info[7]
     
+    comment_data = CommentData(
+        **{
+            "userId": user_id,
+            "commentBody": request.form.get("comment"),
+            "levelId": level_id,
+            "commentRating": request.form.get("rating")
+        }
+    )
+    
     if level_is_public and user_id is not None and user_id != level_user:
-        comment_data = CommentData(
-            **{
-                "userId": user_id,
-                "commentBody": request.form.get("comment"),
-                "levelId": level_id,
-                "commentRating": request.form.get("rating")
-            }
-        )
         level_handler.add_level_comment(comment_data)
     
     return redirect(url_for("level", level_id = level_id))
+
+
+@app.route("/update-comment", methods = ["PATCH"])
+@utils.requires_auth
+def update_comment():
+    user_id = session.get("profile").get("user_id")
+    comment_data = CommentData(
+        **{
+            "commentId": request.form.get("comment_id"),
+            "userId": user_id,
+            "commentBody": request.form.get("comment"),
+            "levelId": request.form.get("level_id"),
+            "commentRating": request.form.get("rating")
+        }
+    )
+    
+    level_handler.update_level_comment(comment_data)
+    return jsonify({"result": "success"})
 
 
 @app.route("/delete-comment", methods = ["DELETE"])

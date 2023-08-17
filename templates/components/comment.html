@@ -53,9 +53,9 @@
                     $("#{{ comment_id }}").hide();
                     $("#comment-editor{{ comment_id }}").show();
                     $('#comment-textarea{{ comment_id }}').val(function(i, text) {
-                        return "{{ description }}";
+                        return '{{ description | replace("\n", "\\n") | replace("\r","")}}';
                     });
-                    {#$("#comment-textarea{{ comment_id }}").append("{{ description }}");#}
+                    {#$("#comment-textarea{{ comment_id }}").append('{{ description | replace("\n", "\\n") | replace("\r","\\n")}}');#}
                     $("#rating-picker{{ comment_id }}").val("{{ rating|int }}");
                 });
                 $("#comment-editor{{ comment_id }}").on("submit", function(e) {

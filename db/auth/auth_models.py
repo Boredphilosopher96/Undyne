@@ -11,13 +11,6 @@ class UserModel(BaseModel):
     user_avatar: Optional[HttpUrl] = Field(alias = "picture")
     creation_date: Optional[datetime] = Field(None, exclude = True)
     
-    # class Config:
-    #     fields = {
-    #         "creation_date": {
-    #             "exclude": True
-    #         }
-    #     }
-    
     @field_validator("user_avatar")
     def convert_url_to_string(cls, value):
         if value is not None:
