@@ -39,7 +39,7 @@ def delete_comment(comment_id, level_id):
 
 
 def update_level(level_data: LevelData):
-    database_handler.execute_query_from_files(f"{BASE_PATH}/update_level.sql", level_data.dict())
+    database_handler.execute_query_from_files(f"{BASE_PATH}/update_level.sql", level_data.model_dump())
 
 
 def delete_level(level_id):

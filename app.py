@@ -14,7 +14,7 @@ from db.level.level_models import CommentData
 from db.user import user_handler
 from factory import object_factory
 from firebase_handler import Firebase
-from level_data_model import LevelData
+from db.level.level_data_model import LevelData
 
 load_dotenv(find_dotenv())
 
